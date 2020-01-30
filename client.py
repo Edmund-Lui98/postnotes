@@ -10,7 +10,7 @@ serverPort = 1234
 clientSocket = socket(AF_INET, SOCK_STREAM)
 
 clientSocket.connect((serverName, serverPort))
-sentence = input(' Input note: ')
+sentence = input(' Input note (FUNCTION xPos yPos width height color msg): ')
 clientSocket. send(sentence.encode())
 modifiedSentence = clientSocket.recv(1024)
 
