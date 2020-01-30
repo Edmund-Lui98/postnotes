@@ -9,8 +9,9 @@ Section: CP372
 -------------------------------------------------------
 """
 from copy import deepcopy
+from note import Note
 
-class notes:
+class Notes:
 
     def __init__(self):
         """
@@ -36,17 +37,31 @@ class notes:
         """
         return len(self._values) == 0
 
-    def post(self, value):
+    def post(self, msg):
         """
         -------------------------------------------------------
         Put note in the server
         -------------------------------------------------------
         Parameters:
-            value - object to be added to server (?)
+            msg - breaks the messages down into separate attributes
         Returns:
             None
         -------------------------------------------------------
         """
+        lst = msg.split(" ")
+
+        status = False
+        xpos = int(lst[0])
+        ypos = int(lst[1])
+        width = int(lst[2])
+        height = int(lst[3])
+        color = lst[4]
+
+        for i in range(5, len(lst)):
+            msg += msg[i]
+            msg += " "
+
+        self._values.append(Note(msg, status, xpos, ypos, width, height, color))
 
         return
 
