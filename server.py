@@ -1,5 +1,6 @@
 # Import socket module
 from socket import *
+import pickle
 import sys  # In order to terminate the program
 
 # Create a TCP server socket
@@ -9,13 +10,13 @@ import sys  # In order to terminate the program
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
 # Assign a port number
-serverPort = 6789
+serverPort = 1234
 
 # Bind the socket to server address and server port
-serverSocket.bind(("", serverPort))
+serverSocket.bind(('', serverPort))
 
 # Listen to at most 1 connection at a time
-serverSocket.listen(1)
+serverSocket.listen(5)
 
 print('The server is ready to receive')
 
@@ -28,7 +29,7 @@ while True:
     connectionSocket, addr = serverSocket.accept()
 
     sentence = connectionSocket.recv(1024).decode()
-    capitalizedSentence = sentence.upper()
+    capitalizedSentence = sentence + "there"
     connectionSocket.send(capitalizedSentence.encode())
     connectionSocket.close()
 
