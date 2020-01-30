@@ -25,17 +25,6 @@ class Notes:
         """
         self._values = []
 
-    def is_empty(self):
-        """
-        -------------------------------------------------------
-        Determines if the stack is empty.
-        Use: b = stack.is_empty()
-        -------------------------------------------------------
-        Returns:
-            True if stack is empty, False otherwise
-        -------------------------------------------------------
-        """
-        return len(self._values) == 0
 
     def post(self, msg):
         """
@@ -65,21 +54,26 @@ class Notes:
 
         return
 
-    def get(self):
+    def get(self, condition):
         """
         -------------------------------------------------------
-        Returns a copy of the value at the top of the stack.
-        Attempting to peek at an empty stack throws an exception.
-        Use: value = stack.peek()
+        Returns all notes stored in the array that satisfy properties described in <params>.
         -------------------------------------------------------
+        Parameters:
+            condition: A string of conditions on what note object to return
+            None: returns all messages
         Returns:
-            value - a copy of the value at the top of stack (?)
+            list of notes object - the message note on the server
         -------------------------------------------------------
         """
-        assert len(self._values) > 0, "Cannot peek at an empty stack"
+        assert len(self._values) > 0, "Cannot peek at an empty list"
 
-        value = deepcopy(self._values[-1])
-        return value
+        notes = []
+        if len(condition) == 0:
+            return notes
+        else:
+            return
+
 
     def pin(self):
         """
