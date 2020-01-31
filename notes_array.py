@@ -75,46 +75,61 @@ class Notes:
             return
 
 
-    def pin(self):
+    def pin(self, pos):
         """
         -------------------------------------------------------
-        Reverses the contents of the source stack.
-        Use: stack.reverse()
+        Pins a note
         -------------------------------------------------------
+        Parameters:
+            pos - string of two numbers (string)
         Returns:
             None
         -------------------------------------------------------
         """
+        positions = pos.split(",")
+        xpos = positions[0]
+        ypos = positions[1]
+
+        for n in self._values:
+            if n._xposition == xpos and n._yposition == ypos:
+                n._status += 1
+
+        return
 
 
     def unpin(self, source1, source2):
         """
         -------------------------------------------------------
-        Combines two source stacks into the current target stack.
-        When finished, the contents of source1 and source2 are
-        interlaced into target and source1 and source2 are empty.
-        (iterative algorithm)
-        Use: target.combine(source1, source2)
+        Unpins a note
         -------------------------------------------------------
         Parameters:
-            source1 - an array-based stack (Stack)
-            source2 - an array-based stack (Stack)
+            pos - string of two numbers (string)
         Returns:
             None
         -------------------------------------------------------
         """
+        positions = pos.split(",")
+        xpos = positions[0]
+        ypos = positions[1]
+
+        for n in self._values:
+            if n._xposition == xpos and n._yposition == ypos and n._status != 0:
+                n._status -= 1
+
+        return
 
 
     def clear(self):
         """
         -------------------------------------------------------
-        Splits the source stack into separate target stacks with values
-        alternating into the targets. At finish source stack is empty.
-        (iterative algorithm)
-        Use: target1, target2 = source.split_alt()
+        forgets all notes that are not pinned
         -------------------------------------------------------
         Returns:
-            target1 - contains alternating values from source (Stack)
-            target2 - contains other alternating values from source (Stack)
+            None
         -------------------------------------------------------
         """
+        for i in range(len(self._values)):
+            if self._values[i]._status == 0:
+                self._values.pop(i)
+
+        return
