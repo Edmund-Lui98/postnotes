@@ -68,6 +68,18 @@ class Notes:
         """
         assert len(self._values) > 0, "Cannot peek at an empty list"
 
+        """
+        TEST CASES FOR GET FUNCTION
+        --------------------------------------------------
+        - allows requests that may take up to 2 values from the notes object(
+        - GET PINS
+            - supply a client with coordinates of all pins
+        - GET color="color"
+            - supply the client with all notes of "color"
+        - 
+        
+        """
+
         notes = []
         if len(condition) == 0:
             return notes
@@ -91,13 +103,18 @@ class Notes:
         ypos = positions[1]
 
         for n in self._values:
-            if n._xposition == xpos and n._yposition == ypos:
+            if xpos < n._xposition <= (xpos + n._height) and ypos <= n._yposition <= (ypos + n._width):
                 n._status += 1
 
         return
 
+        #chaimultetso
+        #ta shi he
 
-    def unpin(self, source1, source2):
+        return
+
+
+    def unpin(self, pos):
         """
         -------------------------------------------------------
         Unpins a note
@@ -113,7 +130,7 @@ class Notes:
         ypos = positions[1]
 
         for n in self._values:
-            if n._xposition == xpos and n._yposition == ypos and n._status != 0:
+            if xpos < n._xposition <= (xpos + n._height) and ypos <= n._yposition <= (ypos + n._width) and n._status != 0:
                 n._status -= 1
 
         return
