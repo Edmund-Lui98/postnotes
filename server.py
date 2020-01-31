@@ -1,6 +1,6 @@
 # Import socket module
 from socket import *
-import pickle
+from notes_array import Notes
 import sys  # In order to terminate the program
 
 # Create a TCP server socket
@@ -22,15 +22,37 @@ print('The server is ready to receive')
 
 # Server should be up and running and listening to the incoming connections
 
+#initialize the notes array
+notes = Notes()
+
 while True:
     print('The server is ready to receive')
 
     # Set up a new connection from the client
     connectionSocket, addr = serverSocket.accept()
 
-    sentence = connectionSocket.recv(1024).decode()
-    capitalizedSentence = sentence.upper()
-    connectionSocket.send(capitalizedSentence.encode())
+    cmd = connectionSocket.recv(1024).decode()
+
+    #Enter code below
+
+
+    if cmd.startswith("POST"):
+        notes.post(cmd[5:])
+    elif cmd.startswith("GET"):
+        notes.get(cmd[4:])
+    elif cmd.startswith("PIN"):
+        notes.pin(cmd[4:])
+    elif cmd.startswith("UNPIN"):
+        notes.unpin(cmd[6:])
+    elif cmd.startswith("CLEAR"):
+        notes.clear()
+    elif cmd.startswith("DISCONNECT"):
+        pass
+    else:
+        pass
+
+    #this is to send something to the client
+    #connectionSocket.send(capitalizedSentence.encode())
     connectionSocket.close()
 
 serverSocket.close()
