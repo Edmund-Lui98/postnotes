@@ -6,7 +6,7 @@ class Note:
         -------------------------------------------------------
         Parameters:
             msg - note given by the client (string)
-            status - pinned or unpinned note (boolean)
+            status - number of times pinned (int > 0 )
             xposition - x coordinate value of the lower left corner (int)
             yposition - y coordinate value of the lower left corner (int)
             width - width of the note (int)
