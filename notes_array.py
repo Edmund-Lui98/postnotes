@@ -68,23 +68,39 @@ class Notes:
         """
         assert len(self._values) > 0, "Cannot peek at an empty list"
 
-        """
-        TEST CASES FOR GET FUNCTION
-        --------------------------------------------------
-        - allows requests that may take up to 2 values from the notes object(
-        - GET PINS
-            - supply a client with coordinates of all pins
-        - GET color="color"
-            - supply the client with all notes of "color"
-        - 
-        
-        """
-
         notes = []
+        # return all
         if len(condition) == 0:
+            notes = self._values
             return notes
-        else:
-            return
+
+        lst = condition.split(" ")
+
+        for attribute in range(len(lst)):
+            if lst[attribute].startswith("color="):
+                for value in self._values:
+                    if value._color == attribute[6:]:
+                        notes.append(value)
+
+            if lst[attribute].startswith("refersTo="):
+                for value in self._values:
+                    if value._msg in attribute[9:]:
+                        notes.append(value)
+
+            if attribute.startswith("contains="):
+                xpos = lst[attribute + 1]
+                ypos = lst[attribute + 2]
+                attribute += 2
+                for value in self._values:
+                        if xpos < value._xposition <= (xpos + value._height) and ypos <= value._yposition <= (ypos + value._width):
+                            notes.append(value)
+
+            if attribute.startswith("PINS"):
+
+
+
+
+
 
 
     def pin(self, pos):
