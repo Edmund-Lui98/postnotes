@@ -96,7 +96,11 @@ class Notes:
                             notes.append(value)
 
             if attribute.startswith("PINS"):
+                for value in self._values:
+                    if value._status > 0:
+                        notes.append(value)
 
+        return notes
 
 
 
