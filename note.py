@@ -16,12 +16,12 @@ class Note:
             None
         -------------------------------------------------------
         """
-        self._msg = msg
-        self._status = status
-        self._xposition = xposition
-        self._yposition = yposition
-        self._width = width
-        self._height = height
+        self.msg = msg
+        self.status = status
+        self.xposition = xposition
+        self.yposition = yposition
+        self.width = width
+        self.height = height
         self.color = color
 
         return

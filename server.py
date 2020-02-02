@@ -59,7 +59,7 @@ while True:
     if returns != None:
         connectionSocket.send(returns.encode())
     elif returns1 != None:
-        connectionSocket.send(x.encode() for x in returns)
+        connectionSocket.send(x.encode() for x in returns1)
     connectionSocket.close()
 
 serverSocket.close()

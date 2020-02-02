@@ -79,12 +79,12 @@ class Notes:
         for attribute in range(len(lst)):
             if lst[attribute].startswith("color="):
                 for value in self._values:
-                    if value._color == lst[attribute][6:]:
+                    if value.color == lst[attribute][6:]:
                         notes.append(value)
 
             if lst[attribute].startswith("refersTo="):
                 for value in self._values:
-                    if value._msg in lst[attribute][9:]:
+                    if value.msg in lst[attribute][9:]:
                         notes.append(value)
 
             if lst[attribute].startswith("contains="):
@@ -92,12 +92,12 @@ class Notes:
                 ypos = lst[attribute + 2]
                 attribute += 2
                 for value in self._values:
-                    if xpos < value._xposition <= (xpos + value._height) and ypos <= value._yposition <= (ypos + value._width):
+                    if xpos < value.xposition <= (xpos + value.height) and ypos <= value.yposition <= (ypos + value.width):
                         notes.append(value)
 
             if lst[attribute].startswith("PINS"):
                 for value in self._values:
-                    if value._status > 0:
+                    if value.status > 0:
                         notes.append(value)
 
         return notes
