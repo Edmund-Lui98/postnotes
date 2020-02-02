@@ -79,12 +79,13 @@ class Notes:
         for attribute in range(len(lst)):
             if lst[attribute].startswith("color="):
                 for value in self._values:
-                    if value._color == lst[attribute][6:]:
+                    if value.color == lst[attribute][6:]:
+                        print(lst[attribute][6:])
                         notes.append(value)
 
             if lst[attribute].startswith("refersTo="):
                 for value in self._values:
-                    if value._msg in lst[attribute][9:]:
+                    if value.msg in lst[attribute][9:]:
                         notes.append(value)
 
             if lst[attribute].startswith("contains="):

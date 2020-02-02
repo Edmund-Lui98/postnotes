@@ -16,7 +16,7 @@ class Note:
             None
         -------------------------------------------------------
         """
-        self._msg = msg
+        self.msg = msg
         self._status = status
         self._xposition = xposition
         self._yposition = yposition

@@ -2,6 +2,7 @@
 from socket import *
 from notes_array import Notes
 import sys  # In order to terminate the program
+import pickle
 
 # Create a TCP server socket
 # (AF_INET is used for IPv4 protocols)
@@ -59,7 +60,8 @@ while True:
     if returns != None:
         connectionSocket.send(returns.encode())
     elif returns1 != None:
-        connectionSocket.send(x.encode() for x in returns)
+        for x in returns1:
+            connectionSocket.send(x.msg.encode())
     connectionSocket.close()
 
 serverSocket.close()
