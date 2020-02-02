@@ -48,7 +48,7 @@ class Notes:
         msg1 = ""
 
         for i in range(5, len(lst)):
-            msg1 += msg[i] + " "
+            msg1 += lst[i] + " "
 
         self._values.append(Note(msg1, status, xpos, ypos, width, height, color))
 
@@ -79,15 +79,15 @@ class Notes:
         for attribute in range(len(lst)):
             if lst[attribute].startswith("color="):
                 for value in self._values:
-                    if value._color == attribute[6:]:
+                    if value._color == lst[attribute][6:]:
                         notes.append(value)
 
             if lst[attribute].startswith("refersTo="):
                 for value in self._values:
-                    if value._msg in attribute[9:]:
+                    if value._msg in lst[attribute][9:]:
                         notes.append(value)
 
-            if attribute.startswith("contains="):
+            if lst[attribute].startswith("contains="):
                 xpos = lst[attribute + 1]
                 ypos = lst[attribute + 2]
                 attribute += 2
@@ -95,7 +95,7 @@ class Notes:
                     if xpos < value._xposition <= (xpos + value._height) and ypos <= value._yposition <= (ypos + value._width):
                         notes.append(value)
 
-            if attribute.startswith("PINS"):
+            if lst[attribute].startswith("PINS"):
                 for value in self._values:
                     if value._status > 0:
                         notes.append(value)
