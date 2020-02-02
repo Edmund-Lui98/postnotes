@@ -107,28 +107,29 @@ class Notes:
 
 
         #second filter for the condition
-        if lst[position].startswith("color="):
-            for value in range(len(notes)):
-                if notes[value].color != lst[position][6:]:
-                    notes.pop(value)
+        if len(lst) > position:
+            if lst[position].startswith("color="):
+                for value in range(len(notes)):
+                    if notes[value].color != lst[position][6:]:
+                        notes.pop(value)
 
-        elif lst[position].startswith("refersTo="):
-            for value in range(len(notes)):
-                if lst[position][9:] not in notes[value].msg:
-                    notes.pop(value)
+            elif lst[position].startswith("refersTo="):
+                for value in range(len(notes)):
+                    if lst[position][9:] not in notes[value].msg:
+                        notes.pop(value)
 
-        elif lst[position].startswith("contains="):
-            xpos = lst[position + 1]
-            ypos = lst[position + 2]
-            for value in range(len(notes)):
-                if xpos >= notes[value].xposition > (xpos + notes[value].height) and ypos > \
-                        notes[value].yposition > (ypos + notes[value].width):
-                    notes.pop(value)
+            elif lst[position].startswith("contains="):
+                xpos = lst[position + 1]
+                ypos = lst[position + 2]
+                for value in range(len(notes)):
+                    if xpos >= notes[value].xposition > (xpos + notes[value].height) and ypos > \
+                            notes[value].yposition > (ypos + notes[value].width):
+                        notes.pop(value)
 
-        elif lst[position].startswith("PINS"):
-            for value in range(len(notes)):
-                if notes[value].status == 0:
-                    notes.pop(value)
+            elif lst[position].startswith("PINS"):
+                for value in range(len(notes)):
+                    if notes[value].status == 0:
+                        notes.pop(value)
 
         return notes
 
