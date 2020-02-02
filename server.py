@@ -65,4 +65,5 @@ while True:
     connectionSocket.close()
 
 serverSocket.close()
-sys.exit()  # Terminate the program after sending the corresponding data
+print("server closed")
+sys.exit() # Terminate the program after sending the corresponding data

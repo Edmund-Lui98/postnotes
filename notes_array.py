@@ -106,7 +106,6 @@ class Notes:
                     notes.append(value)
             position += 1
 
-
         #second filter for the condition
         if len(lst) > position:
             if lst[position].startswith("color="):
@@ -131,7 +130,6 @@ class Notes:
                 for value in range(len(notes)):
                     if notes[value].status == 0:
                         notes.pop(value)
-
         return notes
 
 
