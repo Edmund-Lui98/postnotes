@@ -36,11 +36,12 @@ while True:
     #Enter code below
 
     returns = None
+    returns1 = None
 
     if cmd.startswith("POST"):
-        notes.post(cmd[5:])
+        returns = notes.post(cmd[5:])
     elif cmd.startswith("GET"):
-        returns = notes.get(cmd[4:])
+        returns1 = notes.get(cmd[4:])
     elif cmd.startswith("PIN"):
         notes.pin(cmd[4:])
     elif cmd.startswith("UNPIN"):
@@ -53,8 +54,12 @@ while True:
         pass
 
     #this is to send something to the client
+    print(returns)
+    print(returns1)
     if returns != None:
         connectionSocket.send(returns.encode())
+    elif returns1 != None:
+        connectionSocket.send(x.encode() for x in returns)
     connectionSocket.close()
 
 serverSocket.close()

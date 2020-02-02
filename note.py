@@ -22,6 +22,6 @@ class Note:
         self._yposition = yposition
         self._width = width
         self._height = height
-        self._color = color
+        self.color = color
 
         return
