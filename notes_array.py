@@ -75,30 +75,60 @@ class Notes:
             return notes
 
         lst = condition.split(" ")
+        position = 0
 
-        for attribute in range(len(lst)):
-            if lst[attribute].startswith("color="):
-                for value in self._values:
-                    if value.color == lst[attribute][6:]:
-                        notes.append(value)
 
-            if lst[attribute].startswith("refersTo="):
-                for value in self._values:
-                    if value.msg in lst[attribute][9:]:
-                        notes.append(value)
+        #first filter for the condition
+        if lst[position].startswith("color="):
+            for value in self._values:
+                if value.color == lst[position][6:]:
+                    notes.append(value)
+            position += 1
 
-            if lst[attribute].startswith("contains="):
-                xpos = lst[attribute + 1]
-                ypos = lst[attribute + 2]
-                attribute += 2
-                for value in self._values:
-                    if xpos < value.xposition <= (xpos + value.height) and ypos <= value.yposition <= (ypos + value.width):
-                        notes.append(value)
+        elif lst[position].startswith("refersTo="):
+            for value in self._values:
+                if lst[position][9:] in value.msg:
+                    notes.append(value)
+            position += 1
 
-            if lst[attribute].startswith("PINS"):
-                for value in self._values:
-                    if value.status > 0:
-                        notes.append(value)
+        elif lst[position].startswith("contains="):
+            xpos = lst[position + 1]
+            ypos = lst[position + 2]
+            position += 3
+            for value in self._values:
+                if xpos < value.xposition <= (xpos + value.height) and ypos <= value.yposition <= (ypos + value.width):
+                    notes.append(value)
+
+        elif lst[position].startswith("PINS"):
+            for value in self._values:
+                if value.status > 0:
+                    notes.append(value)
+            position += 1
+
+
+        #second filter for the condition
+        if lst[position].startswith("color="):
+            for value in range(len(notes)):
+                if notes[value].color != lst[position][6:]:
+                    notes.pop(value)
+
+        elif lst[position].startswith("refersTo="):
+            for value in range(len(notes)):
+                if lst[position][9:] not in notes[value].msg:
+                    notes.pop(value)
+
+        elif lst[position].startswith("contains="):
+            xpos = lst[position + 1]
+            ypos = lst[position + 2]
+            for value in range(len(notes)):
+                if xpos >= notes[value].xposition > (xpos + notes[value].height) and ypos > \
+                        notes[value].yposition > (ypos + notes[value].width):
+                    notes.pop(value)
+
+        elif lst[position].startswith("PINS"):
+            for value in range(len(notes)):
+                if notes[value].status == 0:
+                    notes.pop(value)
 
         return notes
 
