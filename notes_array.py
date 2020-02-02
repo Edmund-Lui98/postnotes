@@ -45,12 +45,12 @@ class Notes:
         width = int(lst[2])
         height = int(lst[3])
         color = lst[4]
+        msg1 = ""
 
         for i in range(5, len(lst)):
-            msg += msg[i]
-            msg += " "
+            msg1 += msg[i] + " "
 
-        self._values.append(Note(msg, status, xpos, ypos, width, height, color))
+        self._values.append(Note(msg1, status, xpos, ypos, width, height, color))
 
         return
 
@@ -92,8 +92,8 @@ class Notes:
                 ypos = lst[attribute + 2]
                 attribute += 2
                 for value in self._values:
-                        if xpos < value._xposition <= (xpos + value._height) and ypos <= value._yposition <= (ypos + value._width):
-                            notes.append(value)
+                    if xpos < value._xposition <= (xpos + value._height) and ypos <= value._yposition <= (ypos + value._width):
+                        notes.append(value)
 
             if attribute.startswith("PINS"):
                 for value in self._values:
