@@ -75,6 +75,7 @@ class Notes:
             return notes
 
         lst = condition.split(" ")
+
         position = 0
 
 
