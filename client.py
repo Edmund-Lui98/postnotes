@@ -24,15 +24,14 @@ else:
     lst = pickle.loads(modifiedSentence)
 
     for attribute in lst:
-        print("""msg {}
-        status {}
-        xpos {}
-        ypos {}
-        width {}
-        height {}
-        color {}""".format(attribute.msg, attribute.status, attribute.xposition, attribute.yposition, attribute.width, attribute.height, attribute.color))
-        print('From server: ', attribute)
-
+        print("""
+        msg: {}
+        pinned status: {}
+        xposition: {}
+        yposition: {}
+        width: {}
+        height: {}
+        color: {}""".format(attribute.msg, attribute.status, attribute.xposition, attribute.yposition, attribute.width, attribute.height, attribute.color))
 
 clientSocket.close()
 
