@@ -37,12 +37,11 @@ while True:
     #Enter code below
 
     returns = None
-    returns1 = None
 
     if cmd.startswith("POST"):
         notes.post(cmd[5:])
     elif cmd.startswith("GET"):
-        returns1 = notes.get(cmd[4:])
+        returns = notes.get(cmd[4:])
     elif cmd.startswith("PIN"):
         notes.pin(cmd[4:])
     elif cmd.startswith("UNPIN"):
@@ -55,12 +54,11 @@ while True:
         pass
 
     #this is to send something to the client
-    #print(returns1)
-    if returns1 != None:
-        print(returns1)
-        msg = pickle.dumps(returns1)
-        connectionSocket.send(msg)
 
+    #print(returns)
+    if returns != None:
+        msg = pickle.dumps(returns)
+        connectionSocket.send(msg)
     connectionSocket.close()
 
 serverSocket.close()
