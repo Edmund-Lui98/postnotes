@@ -5,7 +5,7 @@ import pickle
 
 serverName = 'localhost'
 # Assign a port number
-serverPort = 1234
+serverPort = 4554
 
 # Bind the socket to server address and server port
 clientSocket = socket(AF_INET, SOCK_STREAM)

@@ -4,6 +4,21 @@ from notes_array import Notes
 import sys  # In order to terminate the program
 import pickle
 
+#take args from the command line
+arg = sys.argv
+print(arg)
+sport = arg[1]
+boardWidth = int(arg[2])
+boardHeight = int(arg[3])
+colors = []
+for i in range(4, len(arg)):
+    colors.append(arg[i])
+
+print("""Port Number: {}
+Board width: {}
+Board height: {}
+Colors available: {}(default),{}""".format(sport, boardWidth, boardHeight, colors[0],colors[1:]))
+
 # Create a TCP server socket
 # (AF_INET is used for IPv4 protocols)
 # (SOCK_STREAM is used for TCP)
@@ -11,7 +26,7 @@ import pickle
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
 # Assign a port number
-serverPort = 1234
+serverPort = sport
 
 # Bind the socket to server address and server port
 serverSocket.bind(('', serverPort))
@@ -54,6 +69,7 @@ while True:
         pass
 
     #this is to send something to the client
+
     #print(returns)
     if returns != None:
         msg = pickle.dumps(returns)
