@@ -13,8 +13,9 @@ clientSocket = socket(AF_INET, SOCK_STREAM)
 clientSocket.connect((serverName, serverPort))
 sentence = input(' Input note (FUNCTION xPos yPos width height color msg): ')
 clientSocket. send(sentence.encode("utf-8"))
+
 modifiedSentence = clientSocket.recv(1024)
-print('From server: ', modifiedSentence.decode("utf-8"))
+print('From server: ', pickle.loads(modifiedSentence))
 
 clientSocket.close()
 

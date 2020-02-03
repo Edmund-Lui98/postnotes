@@ -52,7 +52,7 @@ class Notes:
 
         self._values.append(Note(msg1, status, xpos, ypos, width, height, color))
 
-        return msg1
+        return
 
     def get(self, condition):
         """
