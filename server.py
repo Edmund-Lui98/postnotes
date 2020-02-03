@@ -17,7 +17,7 @@ serverPort = 1234
 serverSocket.bind(('', serverPort))
 
 # Listen to at most 1 connection at a time
-serverSocket.listen(5)
+serverSocket.listen(1)
 
 print('The server is ready to receive')
 
@@ -40,7 +40,7 @@ while True:
     returns1 = None
 
     if cmd.startswith("POST"):
-        returns = notes.post(cmd[5:])
+        notes.post(cmd[5:])
     elif cmd.startswith("GET"):
         returns1 = notes.get(cmd[4:])
     elif cmd.startswith("PIN"):
@@ -61,9 +61,10 @@ while True:
         connectionSocket.send(returns.encode())
     elif returns1 != None:
         for x in returns1:
-            connectionSocket.send(x.msg.encode())
+            msg = pickle.dumps(x)
+            connectionSocket.send(msg)
     connectionSocket.close()
 
 serverSocket.close()
 print("server closed")
-sys.exit() # Terminate the program after sending the corresponding data
+sys.exit()# Terminate the program after sending the corresponding data
