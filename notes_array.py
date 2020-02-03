@@ -97,7 +97,8 @@ class Notes:
             ypos = lst[position + 2]
             position += 3
             for value in self._values:
-                if (xpos >= value.xposition and xpos <= (value.xposition + value.height)) and (ypos >= value.yposition and ypos <= (value.yposition + value.height)):
+                if (xpos >= value.xposition and xpos <= (value.xposition + value.height)) and \
+                        (ypos >= value.yposition and ypos <= (value.yposition + value.height)):
                     notes.append(value)
 
         elif lst[position].startswith("PINS"):
@@ -122,8 +123,8 @@ class Notes:
                 xpos = lst[position + 1]
                 ypos = lst[position + 2]
                 for value in range(len(notes)):
-                    if xpos >= notes[value].xposition > (xpos + notes[value].height) and ypos > \
-                            notes[value].yposition > (ypos + notes[value].width):
+                    if (xpos < value.xposition and xpos > (value.xposition + value.height)) and \
+                            (ypos < value.yposition and ypos > (value.yposition + value.height)):
                         notes.pop(value)
 
             elif lst[position].startswith("PINS"):
@@ -152,9 +153,10 @@ class Notes:
         xpos = positions[0]
         ypos = positions[1]
 
-        for n in self._values:
-            if xpos < n._xposition <= (xpos + n._height) and ypos <= n._yposition <= (ypos + n._width):
-                n._status += 1
+        for value in self._values:
+            if (xpos >= value.xposition and xpos <= (value.xposition + value.height)) and \
+                    (ypos >= value.yposition and ypos <= (value.yposition + value.height)):
+                value.status += 1
 
         return
 
@@ -179,9 +181,10 @@ class Notes:
         xpos = positions[0]
         ypos = positions[1]
 
-        for n in self._values:
-            if xpos < n._xposition <= (xpos + n._height) and ypos <= n._yposition <= (ypos + n._width) and n._status != 0:
-                n._status -= 1
+        for value in self._values:
+            if (xpos >= value.xposition and xpos <= (value.xposition + value.height)) and \
+                    (ypos >= value.yposition and ypos <= (value.yposition + value.height)) and value.status != 0:
+                value.status -= 1
 
         return
 
@@ -196,7 +199,7 @@ class Notes:
         -------------------------------------------------------
         """
         for i in range(len(self._values)):
-            if self._values[i]._status == 0:
+            if self._values[i].status == 0:
                 self._values.pop(i)
 
         return
