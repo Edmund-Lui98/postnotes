@@ -123,8 +123,8 @@ class Notes:
                 xpos = int(lst[position + 1])
                 ypos = int(lst[position + 2])
                 for value in range(len(notes)):
-                    if (xpos < value.xposition and xpos > (value.xposition + value.height)) and \
-                            (ypos < value.yposition and ypos > (value.yposition + value.height)):
+                    if (xpos < notes[value].xposition and xpos > (notes[value].xposition + notes[value].height)) and \
+                            (ypos < notes[value].yposition and ypos > (notes[value].yposition + notes[value].height)):
                         notes.pop(value)
 
             elif lst[position].startswith("PINS"):
