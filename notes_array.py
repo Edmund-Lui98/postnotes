@@ -97,7 +97,7 @@ class Notes:
             ypos = lst[position + 2]
             position += 3
             for value in self._values:
-                if xpos < value.xposition <= (xpos + value.height) and ypos <= value.yposition <= (ypos + value.width):
+                if (xpos >= value.xposition and xpos <= (value.xposition + value.height)) and (ypos >= value.yposition and ypos <= (value.yposition + value.height)):
                     notes.append(value)
 
         elif lst[position].startswith("PINS"):
