@@ -10,7 +10,7 @@ class Note:
             xposition - x coordinate value of the lower left corner (int)
             yposition - y coordinate value of the lower left corner (int)
             width - width of the note (int)
-            heigh - height of the note (int)
+            height - height of the note (int)
             color - color of the note (string)
         Returns:
             None

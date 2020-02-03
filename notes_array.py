@@ -155,11 +155,6 @@ class Notes:
 
         return
 
-        #chaimultetso
-        #ta shi he
-
-        return
-
 
     def unpin(self, pos):
         """
