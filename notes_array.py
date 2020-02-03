@@ -93,8 +93,8 @@ class Notes:
             position += 1
 
         elif lst[position].startswith("contains="):
-            xpos = lst[position + 1]
-            ypos = lst[position + 2]
+            xpos = int(lst[position + 1])
+            ypos = int(lst[position + 2])
             position += 3
             for value in self._values:
                 if (xpos >= value.xposition and xpos <= (value.xposition + value.height)) and \
@@ -120,8 +120,8 @@ class Notes:
                         notes.pop(value)
 
             elif lst[position].startswith("contains="):
-                xpos = lst[position + 1]
-                ypos = lst[position + 2]
+                xpos = int(lst[position + 1])
+                ypos = int(lst[position + 2])
                 for value in range(len(notes)):
                     if (xpos < value.xposition and xpos > (value.xposition + value.height)) and \
                             (ypos < value.yposition and ypos > (value.yposition + value.height)):
@@ -145,8 +145,8 @@ class Notes:
         -------------------------------------------------------
         """
         positions = pos.split(",")
-        xpos = positions[0]
-        ypos = positions[1]
+        xpos = int(positions[0])
+        ypos = int(positions[1])
 
         for value in self._values:
             if (xpos >= value.xposition and xpos <= (value.xposition + value.height)) and \
@@ -168,8 +168,8 @@ class Notes:
         -------------------------------------------------------
         """
         positions = pos.split(",")
-        xpos = positions[0]
-        ypos = positions[1]
+        xpos = int(positions[0])
+        ypos = int(positions[1])
 
         for value in self._values:
             if (xpos >= value.xposition and xpos <= (value.xposition + value.height)) and \
