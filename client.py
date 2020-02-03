@@ -11,9 +11,9 @@ sName = connection[1]
 sPort = int(connection[2])
 print("sname: {} sport{}".format(sName,sPort))
 
-serverName = sName
+serverName = "localhost"
 # Assign a port number
-serverPort = sPort
+serverPort = 4554
 
 # Bind the socket to server address and server port
 clientSocket = socket(AF_INET, SOCK_STREAM)
