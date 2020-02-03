@@ -19,14 +19,14 @@ Board width: {}
 Board height: {}
 Colors available: {}(default),{}""".format(sport, boardWidth, boardHeight, colors[0],colors[1:]))
 
-# Create a TCP server socket
-# (AF_INET is used for IPv4 protocols)
-# (SOCK_STREAM is used for TCP)
+#Create a TCP server socket
+#(AF_INET is used for IPv4 protocols)
+#(SOCK_STREAM is used for TCP)
 
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
 # Assign a port number
-serverPort = sport
+serverPort = 1234
 
 # Bind the socket to server address and server port
 serverSocket.bind(('', serverPort))

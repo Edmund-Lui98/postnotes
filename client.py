@@ -1,11 +1,19 @@
 # Import socket module
 from socket import *
 import sys # In order to terminate the program
-import pickle
+import pickle # Used to return objects
 
-serverName = 'localhost'
+connect = input("Please connect to server name and port number: ")
+while connect.startswith("CONNECT")== False:
+    connect = input("Please connect to server name and port number: ")
+connection = connect.split(" ")
+sName = connection[1]
+sPort = int(connection[2])
+print("sname: {} sport{}".format(sName,sPort))
+
+serverName = sName
 # Assign a port number
-serverPort = 4554
+serverPort = sPort
 
 # Bind the socket to server address and server port
 clientSocket = socket(AF_INET, SOCK_STREAM)
@@ -13,8 +21,7 @@ clientSocket = socket(AF_INET, SOCK_STREAM)
 clientSocket.connect((serverName, serverPort))
 sentence = input(' Input note (FUNCTION xPos yPos width height color msg): ')
 clientSocket. send(sentence.encode("utf-8"))
-
-
+#recieve from the server
 modifiedSentence = clientSocket.recv(1024)
 if sentence.startswith("GET") == False:
     pass
