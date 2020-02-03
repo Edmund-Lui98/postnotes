@@ -57,9 +57,10 @@ while True:
     #this is to send something to the client
     #print(returns1)
     if returns1 != None:
-        for x in returns1:
-            msg = pickle.dumps(x)
-            connectionSocket.send(msg)
+        print(returns1)
+        msg = pickle.dumps(returns1)
+        connectionSocket.send(msg)
+
     connectionSocket.close()
 
 serverSocket.close()
