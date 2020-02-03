@@ -133,11 +133,6 @@ class Notes:
                         notes.pop(value)
         return notes
 
-
-
-
-
-
     def pin(self, pos):
         """
         -------------------------------------------------------

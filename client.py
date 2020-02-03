@@ -15,7 +15,19 @@ sentence = input(' Input note (FUNCTION xPos yPos width height color msg): ')
 clientSocket. send(sentence.encode("utf-8"))
 
 modifiedSentence = clientSocket.recv(1024)
-print('From server: ', pickle.loads(modifiedSentence))
+if sentence.startswith("GET") == False:
+    pass
+else:
+    x = pickle.loads(modifiedSentence)
+    print("""msg {}
+    status {}
+    xpos {}
+    ypos {}
+    width {}
+    height {}
+    color {}""".format(x.msg, x.status, x.xposition,x.yposition, x.width,x.height,x.color))
+    print('From server: ', x)
+
 
 clientSocket.close()
 
