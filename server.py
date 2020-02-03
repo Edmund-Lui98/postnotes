@@ -32,7 +32,7 @@ while True:
     # Set up a new connection from the client
     connectionSocket, addr = serverSocket.accept()
 
-    cmd = connectionSocket.recv(1024).decode()
+    cmd = connectionSocket.recv(1024).decode("utf-8")
 
     #Enter code below
 
@@ -55,11 +55,8 @@ while True:
         pass
 
     #this is to send something to the client
-    print(returns)
-    print(returns1)
-    if returns != None:
-        connectionSocket.send(returns.encode())
-    elif returns1 != None:
+    #print(returns1)
+    if returns1 != None:
         for x in returns1:
             msg = pickle.dumps(x)
             connectionSocket.send(msg)
