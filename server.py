@@ -26,7 +26,7 @@ Colors available: {}(default),{}""".format(sport, boardWidth, boardHeight, color
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
 # Assign a port number
-serverPort = 1234
+serverPort = sport
 
 # Bind the socket to server address and server port
 serverSocket.bind(('', serverPort))
