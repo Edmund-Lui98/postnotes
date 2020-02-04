@@ -229,10 +229,6 @@ Board width: {}
 Board height: {}
 Colors available: {}(default),{}""".format(sport, boardWidth, boardHeight, colors[0],colors[1:]))
 
-#Create a TCP server socket
-#(AF_INET is used for IPv4 protocols)
-#(SOCK_STREAM is used for TCP)
-
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
 # Assign a port number
@@ -246,8 +242,6 @@ serverSocket.listen(1)
 
 print('The server is ready to receive')
 
-# Server should be up and running and listening to the incoming connections
-
 #initialize the notes array
 notes = Notes()
 
@@ -258,8 +252,6 @@ while True:
     connectionSocket, addr = serverSocket.accept()
 
     cmd = connectionSocket.recv(1024).decode("utf-8")
-
-    #Enter code below
 
     returns = None
 
@@ -279,8 +271,6 @@ while True:
         pass
 
     #this is to send something to the client
-
-    #print(returns)
     if returns != None:
         msg = pickle.dumps(returns)
         connectionSocket.send(msg)
@@ -288,4 +278,4 @@ while True:
 
 serverSocket.close()
 print("server closed")
-sys.exit()# Terminate the program after sending the corresponding data
+sys.exit()# Terminate the program after sending the data
